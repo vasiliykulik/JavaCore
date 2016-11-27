@@ -1,0 +1,21 @@
+package src.m3oop.questionanswer.task4.fileSystem;
+
+/**
+ * Created by Raketa on 30.08.2016.
+ */
+public class Main {
+    public static void main(String[] args) { //вариантов реализации много - главное понимать как все эти блоки строятся
+   // byte     systemCode =64;
+    FileSystem fileSystem = new FileSystem((byte) 64,Long.MAX_VALUE,"FilesystemSimple"); // нет автобоксинга ()64, сделали явное приведение
+
+  //  Folder folder = new Folder(fileSystem, "C:/Users/test/folderName");
+
+    //File file = new File(256,folder);
+
+        //example
+        byte c=100; // тоесть кушает - а в конструкторе не умеет, можно привести к типу - тк компилятор не хавает. восходящее и нисходящее приведение - можно и так назвать
+
+        int a = 1000;
+        long b = a;
+    }
+}
