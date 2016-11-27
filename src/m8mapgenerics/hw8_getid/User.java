@@ -4,7 +4,8 @@ package src.m8mapgenerics.hw8_getid;
  * Created by Стрела on 11.10.2016.
  */
 
-
+/*классом user наследуем сущность с методом который возвращает объект по id
+ *  */
 public class User extends BaseEntity{
     private long id;
     private String name;

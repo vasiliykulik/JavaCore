@@ -50,8 +50,9 @@ public class AbstractDAOImpl<T extends BaseEntity> implements AbstractDAO<T> {
      тоже не получается результат (потому что equals из User не юзается)
      */
 
-    /*Имплементируем методы, модификатор доступа public
-    * */
+    /*Имплементируем методы, и реализуем метод T get(long id); модификатор доступа public
+    *   пробегаемся по нашему Листу db в посках поступившего long, если находим
+    *   возвращаем объект с таким id, если не находим возвращаем null */
     @Override
     public T get(long id) {
         for(T item:db){
@@ -61,7 +62,7 @@ public class AbstractDAOImpl<T extends BaseEntity> implements AbstractDAO<T> {
         }
         return null;
     }
-
+/*если в стриме встретим объект с полученным id-> то удалить его и напечатать резутьтат операции типа boolean*/
     @Override
     public void deleteById(long id) {
         System.out.println(db.removeIf(x->x.getId()==id));
