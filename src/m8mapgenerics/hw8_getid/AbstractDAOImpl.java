@@ -62,7 +62,7 @@ public class AbstractDAOImpl<T extends BaseEntity> implements AbstractDAO<T> {
         }
         return null;
     }
-/*если в стриме встретим объект с полученным id-> то удалить его и напечатать резутьтат операции типа boolean*/
+/*если  встретим объект с полученным id-> то удалить его и напечатать резутьтат операции типа boolean*/
     @Override
     public void deleteById(long id) {
         System.out.println(db.removeIf(x->x.getId()==id));

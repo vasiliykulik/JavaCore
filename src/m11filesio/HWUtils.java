@@ -7,7 +7,14 @@ import java.nio.Buffer;
 import java.util.Map;
 
 /**
- * Created by Стрела on 05.11.2016.
+ * ЗАДАНИЕ 1
+
+ You should create method which replace words in the File and returns String with replaced values
+ a) read file, save to string var
+ b) replace words
+ c) return new string
+ String replacer(Map<String, String> map)
+
  */
 public class HWUtils {
     public static String replacer(Map<String, String> map) throws IOException {
@@ -27,7 +34,13 @@ public class HWUtils {
         br.close();
         return sb.toString();
     }
+/*ЗАДАНИЕ 2
 
+You should create method which replace words in the File and rewrite File content with new values
+a) read file, save to string var
+b) replace words
+c) rewrite file with string
+File fileContentReplacer(Map<String, String> map)*/
     public static File fileContentReplacer(Map<String, String> map) throws IOException {
         File file = new File("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
         String result = replacer(map);
@@ -38,7 +51,13 @@ public class HWUtils {
         fw.close();
         return file;
     }
+/*ЗАДАНИЕ 3
 
+You should create method which replace words in the File and write result to existing File content
+a) read file, save to string var
+b) replace words
+c) add string to the existing file content
+File fileContentMerger(Map<String, String> map)*/
     public static File fileContentMerger(Map<String, String> map) throws IOException {
         File file = new File("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
         FileWriter fileWriter = new FileWriter(file, true); // true дописывает в конец файла
@@ -49,7 +68,15 @@ public class HWUtils {
         fileWriter.close();
         return file;
     }
+/*ЗАДАНИЕ 4
 
+Check if file contains particular word. Pring 0 if no. Print number n which equals number of times it is contained in the file
+a) read file, save to string var
+b) calculate how many time the word occurs
+c) print result
+int checkWord(String word)
+
+Write this task with usual try and try with resources (two versions)*/
     public static int checkWord(String word) throws IOException {
         int result = 0;
         FileReader fileReader = new FileReader("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
@@ -63,7 +90,15 @@ public class HWUtils {
         }
         return result;
     }
+/*ЗАДАНИЕ 4
 
+Check if file contains particular word. Pring 0 if no. Print number n which equals number of times it is contained in the file
+a) read file, save to string var
+b) calculate how many time the word occurs
+c) print result
+int checkWord(String word)
+
+Write this task with usual try and try with resources (two versions)*/
     public static int checkWordResourceTry(String word) {
         int result = 0;
         try {
@@ -81,41 +116,4 @@ public class HWUtils {
         }
         return result;
     }
-
-
-    /*public static String base(Map<String, String> map) {
-        String result = null;
-        StringBuilder sb = new StringBuilder();
-        try {
-            FileReader filereader = new FileReader("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");// read file
-            BufferedReader br = new BufferedReader(filereader);
-            try {
-                String line = br.readLine();
-                while (line != null) {
-                    if (map.containsKey(line)) {
-                        line = map.get(line);
-                    }
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
-                    line = br.readLine();
-                }
-                filereader.close();
-                br.close();
-            } catch (IOException e) {
-                System.err.println("work (reading) with file error " + e);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("file not found when reading");
-        }
-        try {
-            result = sb.toString();
-            FileWriter fileWriter = new FileWriter("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
-            BufferedWriter bw = new BufferedWriter(fileWriter);
-            bw.write(result);
-            bw.close();
-        } catch (IOException e) {
-            System.out.println("file not found when writing" + e);
-        }
-        return result;
-    }*/
 }
