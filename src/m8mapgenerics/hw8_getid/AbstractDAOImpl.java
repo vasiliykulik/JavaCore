@@ -50,8 +50,7 @@ public class AbstractDAOImpl<T extends BaseEntity> implements AbstractDAO<T> {
      тоже не получается результат (потому что equals из User не юзается)
      */
 
-    /*Имплементируем методы, модификатор доступа public
-    * */
+    /*Имплементируем методы    * */
     @Override
     public T get(long id) {
         for(T item:db){
