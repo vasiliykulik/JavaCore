@@ -33,6 +33,7 @@ public class WorkWithFiles {
         }*/
 
         System.out.println(HWUtils.checkWordResourceTry("increased"));
+        System.out.println();
 
 
 /*content of file.txt
