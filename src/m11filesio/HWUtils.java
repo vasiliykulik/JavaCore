@@ -4,6 +4,7 @@ import com.sun.org.apache.xml.internal.serialize.LineSeparator;
 
 import java.io.*;
 import java.nio.Buffer;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -17,39 +18,42 @@ import java.util.Map;
 
  */
 public class HWUtils {
-    public static String replacer(Map<String, String> map) throws IOException {
-        FileReader fileReader = new FileReader("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
-        BufferedReader br = new BufferedReader(fileReader);
-        StringBuilder sb = new StringBuilder();
-        String line = br.readLine();
-        while (line != null) {
-            if (map.containsKey(line)) {
-                line = map.get(line);
-            }
-            sb.append(line);
-            sb.append(System.lineSeparator());
-            line = br.readLine();
+
+    public static String replacer(String file, Map<String, String> map) throws IOException {
+        String result = readFromFile(file);
+
+        for (String word: map.keySet()){
+            result = result.replaceAll(word, map.get(word));
         }
-        fileReader.close();
-        br.close();
+        return result;
+    }
+
+    private static String readFromFile(String file) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        try(FileReader fileReader = new FileReader(new File (file));
+        BufferedReader br = new BufferedReader(fileReader)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append(System.lineSeparator());
+            }
+        }
         return sb.toString();
     }
-/*ЗАДАНИЕ 2
 
-You should create method which replace words in the File and rewrite File content with new values
-a) read file, save to string var
-b) replace words
-c) rewrite file with string
-File fileContentReplacer(Map<String, String> map)*/
-    public static File fileContentReplacer(Map<String, String> map) throws IOException {
-        File file = new File("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
-        String result = replacer(map);
+    /*ЗАДАНИЕ 2
+
+    You should create method which replace words in the File and rewrite File content with new values
+    a) read file, save to string var
+    b) replace words
+    c) rewrite file with string
+    File fileContentReplacer(Map<String, String> map)*/
+    public static void fileContentReplacer(String file, Map<String, String> map) throws IOException {
+        String result = replacer(file, map);
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(result);
         bw.close();
         fw.close();
-        return file;
     }
 /*ЗАДАНИЕ 3
 
@@ -58,15 +62,13 @@ a) read file, save to string var
 b) replace words
 c) add string to the existing file content
 File fileContentMerger(Map<String, String> map)*/
-    public static File fileContentMerger(Map<String, String> map) throws IOException {
-        File file = new File("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
+    public static void fileContentMerger(String file, Map<String, String> map) throws IOException {
         FileWriter fileWriter = new FileWriter(file, true); // true дописывает в конец файла
         BufferedWriter bw = new BufferedWriter(fileWriter);
         bw.append(System.lineSeparator());
-        bw.append(replacer(map));
+        bw.append(replacer(file, map));
         bw.close();
         fileWriter.close();
-        return file;
     }
 /*ЗАДАНИЕ 4
 
@@ -77,18 +79,18 @@ c) print result
 int checkWord(String word)
 
 Write this task with usual try and try with resources (two versions)*/
-    public static int checkWord(String word) throws IOException {
-        int result = 0;
-        FileReader fileReader = new FileReader("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt");
-        BufferedReader br = new BufferedReader(fileReader);
-        String line = br.readLine();
-        while (line != null) {
-            if (line.equals(word)) {
-                result++;
+    public static int checkWord(String file, String word) throws IOException {
+        int result1 = 0;
+        String result = readFromFile(file);
+        String words[] = result.split(System.lineSeparator());
+        for(String word1: words){
+            if(word1.equals(word)){
+                result1++;
             }
-            line = br.readLine();
         }
-        return result;
+        System.out.println(Arrays.deepToString(words));
+
+        return result1;
     }
 /*ЗАДАНИЕ 4
 
@@ -99,7 +101,7 @@ c) print result
 int checkWord(String word)
 
 Write this task with usual try and try with resources (two versions)*/
-    public static int checkWordResourceTry(String word) {
+    /*public static int checkWordResourceTry(String word) {
         int result = 0;
         try {
             try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt"))) {
@@ -116,4 +118,4 @@ Write this task with usual try and try with resources (two versions)*/
         }
         return result;
     }
-}
+}*/}

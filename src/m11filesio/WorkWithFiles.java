@@ -1,5 +1,6 @@
 package src.m11filesio;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,32 +9,40 @@ import java.util.Map;
  */
 public class WorkWithFiles {
     public static void main(String[] args) {
+        String fileAdress = "C:\\Users\\Стрела\\IdeaProjects\\JavaCore\\src\\m11filesio\\file.txt";
         Map<String, String> map = new HashMap<>();
+        // CTRL + / !!!!! !!!!!!!
         map.put("Hello", "Bye");
-        map.put("salary", "monetary penalty");
-        /*try {
-            System.out.println(HWController.replacer(map));
+//          map.put("Bye", "Hello");
+       map.put("salary", "monetary penalty");
+//           map.put("monetary penalty", "salary");
+
+        try {
+            System.out.println(HWUtils.replacer(fileAdress,map));
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+
+
         /*try {
-            System.out.println(HWController.fileContentReplacer(map));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        /*try {
-            System.out.println(HWController.fileContentMerger(map));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        /*try {
-            System.out.println(HWController.checkWord("increased"));
+            HWUtils.fileContentReplacer(fileAdress,map);
         } catch (IOException e) {
             e.printStackTrace();
         }*/
 
-        System.out.println(HWUtils.checkWordResourceTry("increased"));
-        System.out.println();
+        /*try {
+            HWUtils.fileContentMerger(fileAdress, map);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        /*try {
+            System.out.println(HWUtils.checkWord(fileAdress,"increased"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        /*System.out.println(HWUtils.checkWordResourceTry("increased"));
+        System.out.println();*/
 
 
 /*content of file.txt
