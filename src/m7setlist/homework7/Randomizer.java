@@ -9,7 +9,9 @@ import java.util.Random;
  * Created by Raketa on 09.10.2016.
  */
 public class Randomizer {
-    private static final int COUNT = 1000;
+    private static final int COUNT = 10
+
+            ;
     public static void main(String[] args) {
 
 

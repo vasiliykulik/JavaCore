@@ -62,7 +62,8 @@ public class EmailBuilder {
         this.tag = tag;
         return this;
     }
-// создали
+
+    // создали
     public Email build() {
         Email email = new Email();
         // использую сеттеры "базоваого класса"

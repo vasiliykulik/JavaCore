@@ -19,7 +19,7 @@ public class EmailImmutable {
     private final String message;
     private final String tag;
 
-// конструктор "базового класса " - работает с иннер класса
+    // конструктор "базового класса " - работает с иннер класса
     // базовый класс МОЖНО сделать немутабельным (потомучто нет сеттеров, и поля final - и инициализируются в конструкторе),
 // и экономия сеттерво
     private EmailImmutable(Builder builder) {
@@ -37,7 +37,6 @@ public class EmailImmutable {
     // с использованием статического inner class
     // отд builder класс
 // при создании мы можем применить builder что бы не создавать мильйон конструкторов
-
 
     public String getFromEmail() {
         return fromEmail;
@@ -74,8 +73,9 @@ public class EmailImmutable {
     public String getTag() {
         return tag;
     }
+
     // на уровне метода
-    public static class Builder{
+    public static class Builder {
         // внутри класса
         private String fromEmail;
         private String fromName;
@@ -144,8 +144,9 @@ public class EmailImmutable {
             this.tag = tag;
             return this;
         }
-/*создаю экземпляр "базового" класса и "передаю сам себя" Builder*/
-        public EmailImmutable build(){
+
+        /*создаю экземпляр "базового" класса и "передаю сам себя" Builder*/
+        public EmailImmutable build() {
             return new EmailImmutable(this);
         }
 
